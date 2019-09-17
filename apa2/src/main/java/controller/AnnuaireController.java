@@ -29,6 +29,7 @@ public class AnnuaireController {
 	detail_inst_repository detail_inst_repository;
 	@Autowired
 	detail_rh_repository detail_rh_repository;
+
 	
 	
 	public ModelAndView View(List<cat_inst> l1,List<cat_rh> l2,String type, int id) {
@@ -42,13 +43,11 @@ public class AnnuaireController {
 	}
 	
 	@GetMapping("/")
-    public ModelAndView Annuaire(){
-       
+    public ModelAndView Annuaire(){ 
        ModelAndView view= View(cat_inst_repository.findAll(),cat_rh_repository.findAll(),"inst",0);
-       view.addObject("cat",cat_inst_repository.findAll());
+       view.addObject("cat",cat_inst_repository.findOne(1));
        view.addObject("detail",detail_inst_repository.findByCat(1));
        return view;
-
     }
 	
 	
@@ -56,7 +55,7 @@ public class AnnuaireController {
 	   public ModelAndView Annuaire2(@PathVariable String id){
 		   int Id = Integer.parseInt(id);
 		   ModelAndView view= View(cat_inst_repository.findAll(),cat_rh_repository.findAll(),"inst",Id-1);
-	       view.addObject("cat",cat_inst_repository.findAll());
+	       view.addObject("cat",cat_inst_repository.findOne(Id));
 	       view.addObject("detail",detail_inst_repository.findByCat(Id));
 	       return view;
 		   
@@ -66,7 +65,7 @@ public class AnnuaireController {
 	   public ModelAndView Annuaire3(@PathVariable String id){
 		  int Id = Integer.parseInt(id);
 		   ModelAndView view= View(cat_inst_repository.findAll(),cat_rh_repository.findAll(),"rh",Id-1);
-	       view.addObject("cat",cat_rh_repository.findAll());
+	       view.addObject("cat",cat_rh_repository.findOne(Id));
 	       view.addObject("detail",detail_rh_repository.findByCat(Id));
 	       return view;
 	    }
@@ -80,7 +79,7 @@ public class AnnuaireController {
 	   }
 	   
 	   @GetMapping("/rh/{id}")
-	   public detail_rh getRessource2(@PathVariable String id )
+	   public detail_rh getRessource2(@PathVariable String id)
 	   {
 		   int D = Integer.parseInt(id);
 		   return detail_rh_repository.findOne(D);

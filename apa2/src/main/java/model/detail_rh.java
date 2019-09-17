@@ -7,6 +7,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+
 @Entity
 @Table (name="detail_rh", schema="annuaire")
 public class detail_rh {
@@ -40,9 +41,21 @@ public class detail_rh {
 	@Column(name="email")
 	 private String email;
    
-	@Column(name="cat")
-	 private int cat;
 	
+	@Column(name="url")
+	 private String  url;
+	
+	@Column(name="cat")
+	private int cat;
+	
+	public String getUrl() {
+		return url;
+	}
+
+	public void setUrl(String url) {
+		this.url = url;
+	}
+
 	public int getCat() {
 		return cat;
 	}

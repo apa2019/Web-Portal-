@@ -42,6 +42,7 @@ public class detail_inst {
 	@Column(name="cat")
 	 private int cat;
     
+	
 	@Column(name="url")
 	 private  String url;
 	
